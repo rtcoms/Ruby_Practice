@@ -295,6 +295,8 @@ but is written on three"
             
             #___________________________________________________
             puts("ARRAYS IN RUBY PROGRAMMING LANGUAGE")
+            # .. => Range
+            #  , => No of elements
             #---------------------------------------------------
             puts("Arrays are untyped and mutable")
             puts("Arrays are dynamically resizable")
@@ -307,7 +309,7 @@ but is written on three"
             a=%w[this is a test]
             a=%w|( { [ <|
             a =Array.new
-            anils=Array.new(3)
+            nils=Array.new(3)
             a=Array.new(4)
             a=Array.new(nils)
             a=Array.new(3) {|i| i+1}
@@ -331,13 +333,57 @@ but is written on three"
             puts(a[0,0])
             puts(a[1,1])
             puts(a[-2,2])
-            puts(a[0..2)])
+            puts(a[0..2])
             puts(a[-2..-1])
             puts(a[0...-1])
             
-            a[0,2] = ['A','B'] #start -0 length-2
+            a[0,2] = ['A','B'] #start - 0 length-2
             
+            #___________________________________________________________
+            puts("________________________HASHES____________________________")
+            #----------------------------------------------------------
             
+            # store a key value pair
+            #key can be anything like string but it is better to have a symbol as key
+            #each key-value pair is called hash literal
+            
+            numbers = Hash.new
+            numbers = {"one"=>1, "two"=>2, "three"=>3}
+                        #or symbol as hashkey as symbols are immutable interned key
+            numbers = {:one=>1, :two=>2, :three=>3}
+                        #other way to declare in ruby 1.9
+            numbers = {one: 1, two: 2, three: 3}
+            
+            #HASH CODES, EQUALITY AND MUTABLE KEYS
+            
+            #Hash class uses eql? for comparing keys
+            #if you define a new class which overrides eql? then you must also override hash method
+            
+            #NOTE : The reason is that the value of #hash is not the only thing needed to
+            #       distinguish hash keys. All objects with the same hash value are mapped
+            #       to the same hash 'bucket' hash collisions are resolved by using the
+            #       eql? method
+            
+            #Hash class uses eql? to compare hash keys but not values
+            
+            #If two objects are eql? then their hash() also should be same
+            
+            # if leave eql? undefined then hashes will compare instances of your class by object identity
+            
+            # hashCodes of two objects must be equal if the objects are equal, however, 
+            # if two objects are unequal, the hashCode can still be equal.
+            s1="this is a string"
+            s2="this is a string"
+            
+            puts s1==s2
+            puts s1===s2
+            puts s1.hash()==s2.hash()
+            
+            s1 = String.new()
+            s2 = String.new()
+            puts s1==s2
+            puts s1===s2
+            puts s1.hash()==s2.hash()
             
             
             
